@@ -4,7 +4,13 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://portpholio-frontend-7zr7.vercel.app'], 
+  methods: ['POST'],
+  allowedHeaders: ['Content-Type']
+}));
+
 app.use(express.json());
 app.post('/api/contact', async (req, res) => {
   const { fullName, email, subject, message, phone } = req.body;
